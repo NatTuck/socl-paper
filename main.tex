@@ -106,11 +106,11 @@ than passing them in as parameters. For example, a program that simulated the
 weather on a 500 meter grid may have the literal value ``500'' hard coded as a
 global constant used throughout the program.
 
-This technique has both advantages and drawbacks. As a non-HPC programmer, the
-drawbacks are most obvious: hard coding a value makes changing the value more
-difficult than if the value were passed as a parameter. Further, it means that
-the code must be duplicated if the algorithm is used with two different values
-in the same program execution. 
+This technique has both advantages and drawbacks. From a software design
+perspective, the drawbacks are most obvious: hard coding a value makes changing
+the value more difficult than if the value were passed as a parameter. Further,
+it means that the code must be duplicated if the algorithm is used with two
+different values in the same program execution. 
 
 The advantage to hard-coding values is that the program will tend to run faster.
 Compilers can do several optimizations with constant values that don't work as
@@ -245,7 +245,7 @@ for specialization in that kernel, and, if so, replacing all uses of that
 argument's value with constant value passed to the kernel call. 
 
 The operation of replacing all uses of an argument with a new value is simple.
-The LLVM API provides a function ({\tt replaceAllUsesWith}) that does exactly
+The LLVM API provides a method ({\tt replaceAllUsesWith}) that does exactly
 this. Because LLVM uses an SSA-based intermediate representation, this works
 well even if the argument variable is modified during kernel execution, which
 would be a problem if specialization was implemented by textual substitution.
@@ -398,9 +398,9 @@ Nvidia card it caused a slowdown compared to specialization without unrolling.
 \subsection{SNU Port of NAS Parallel Benchmarks}
 
 This is a port of the NASA Advanced Supercomputing Division's NAS Parallel
-Benchmark\cite{Van:2002:NAS} suite for large parallel HPC installations to
-OpenCL, performed by the Center for Manycore Programming at Seoul National
-University in Korea\cite{Seo:2011:NASPerf}.
+Benchmarksuite for large parallel HPC installations to OpenCL, performed by the
+Center for Manycore Programming at Seoul National University in Korea
+\cite{Van:2002:NAS}\cite{Seo:2011:NASPerf}.
 
 These benchmarks are reasonably complex and require a significant amount of
 communication in patterns that are not easily implemented in OpenCL, so the SNU
@@ -526,6 +526,8 @@ systems based on JIT compilation as an optional optimization. With additional
 work on automatically determining specialization variables, it would be a
 useful general addition to the JIT compilation capability of LLVM.
 
+\balancecolumns
+
 Specialization seems to provide better performance benefits for graphics
 processors than it does for CPUs, so future work on Specialization Annotated
 OpenCL will focus on open source OpenCL runtimes like Clover (for AMD GPUs) and
@@ -551,6 +553,5 @@ general use.
 \bibliographystyle{abbrv}
 \bibliography{references}
 
-\balancecolumns
 
 \end{document}

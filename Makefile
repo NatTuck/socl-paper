@@ -14,6 +14,9 @@ show:
 	make $(PAPER)
 	evince $(PAPER) &
 
+spellcheck:
+	bash spellcheck.sh
+
 clean:
 	rm -f *.pdf *.toc *.log *.aux *.bbl *.blg *.run.xml *.bak *-blx.bib *~ *.bcf *.out
 
